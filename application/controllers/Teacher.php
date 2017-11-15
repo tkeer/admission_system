@@ -30,9 +30,9 @@ class Teacher extends MY_Controller {
 		
 		
 		$data = array(
-			'status'     =>$i,
-			'ression'    =>$des,
-			'description'=>$desrip
+			'status'     => $i,
+			'ression'    => $des,
+			'description' => $desrip
 		);
 		$result = $this->pro->req_status($data,$st_id,$c_id);
 		if($result){

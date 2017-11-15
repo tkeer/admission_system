@@ -70,6 +70,9 @@ class Course extends CI_Model {
             ->from('course')
             ->where('st_id', $id)
             ->join('course_list', 'course_list.course_id = course.course_id', 'left')
+            ->join('teacher', 'course_list.instr_id = teacher.instr_id', 'left')
+            ->join('room', 'course_list.id = room.id', 'left')
+            ->order_by('course_list.start_time')
             ->get();
         return $query->result();
     }

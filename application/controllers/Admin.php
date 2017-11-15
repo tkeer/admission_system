@@ -164,7 +164,7 @@ class Admin extends MY_Controller {
 	public function List_teach(){
 		$result = $this->pro->list_teach();
 			if($result){
-				$this->load->view('admin/list_teach', ['result'=>$result]);
+				$this->load->view('admin/List_teach', ['result'=>$result]);
 			}else{
 				echo "not";
 			}
@@ -228,7 +228,7 @@ class Admin extends MY_Controller {
 	public function List_room(){
 		$result = $this->pro->list_room();
 			if($result){
-				$this->load->view('admin/list_room', ['result'=>$result]);
+				$this->load->view('admin/List_room', ['result'=>$result]);
 			}else{
 				echo "not";
 			}
@@ -299,6 +299,14 @@ class Admin extends MY_Controller {
 		$e_t = $this->input->post_get('end');
 		$cons_id = $this->input->post_get('ins_id');
 		$comment = $this->input->post_get('comment');
+
+        echo '<pre>';
+        print_r(unserialize(serialize($this->input->post('hobbies[]'))));
+//        print_r(serialize($this->input->post('hobbies[]')));
+//        print_r($this->input->post('hobbies[]'));
+        echo '<pre />';
+        die;
+
 		$days = serialize($this->input->post('hobbies[]'));
 	// days received 	
 		
