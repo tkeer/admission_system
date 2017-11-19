@@ -2,14 +2,19 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends MY_Controller {
-	
+
+    /**
+     * @var Admin_login
+     */
+    public $login;
+
 	public function __construct(){
 		parent::__construct();
-		if(  $this->session->userdata('admin_id')){
-		return redirect('admin');
-		}if($this->session->userdata('teacher_id')){
-		return redirect('Teacher');
-		}
+//		if(  $this->session->userdata('admin_id')){
+//		return redirect('admin');
+//		}if($this->session->userdata('teacher_id')){
+//		return redirect('Teacher');
+//		}
 		$this->load->model('admin_login','login');
 	}
 	public function index(){

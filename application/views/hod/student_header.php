@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Students Panel</title>
+    <title>HOD Panel</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/bootstrap.css')?>">
@@ -57,10 +57,10 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li class="active">
-                        <a href="<?= base_url('student/dashboad');?>"><i class="fa fa-fw fa-dashboard"></i> Home</a>
+                        <a href="<?= base_url('hod');?>"><i class="fa fa-fw fa-dashboard"></i> Home</a>
                     </li>
                     <li>
-                        <a href="<?= base_url('student/subjects');?>"><i class="fa fa-fw fa-dashboard"></i> Requests</a>
+                        <a href="<?= base_url('hod/req');?>"><i class="fa fa-fw fa-dashboard"></i> Requests</a>
                     </li>
                     
                     <li>

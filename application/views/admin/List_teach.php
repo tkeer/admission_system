@@ -2,12 +2,7 @@
 <script>
 	$(document).ready(function(){
     $(".course_id").click(function(){
-		var x = confirm("Are you sure you want to choose this Subject?")
-		if (x) {
-                                   return true;
-                                    } else {
-                                            return false;
-                                    }
+		return confirm("Are you sure you want to choose this Subject?")
     });
 });
 </script>

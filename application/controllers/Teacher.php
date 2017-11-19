@@ -2,7 +2,12 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Teacher extends MY_Controller {
-	
+
+    /**
+     * @var Admin_pro
+     */
+    public $pro;
+
 	public function __construct(){
 		parent::__construct();
 		if( ! $this->session->userdata('teacher_id'))
@@ -16,10 +21,10 @@ class Teacher extends MY_Controller {
 	
 	public function req(){
 		$id = $this->session->userdata('teacher_id');
+
 		$requests = $this->pro->request($id);
-		if($requests){
-			$this->load->view('teacher/requests',['data'=>$requests]);
-		}
+        $requests = $requests ? $requests : [];
+        $this->load->view('teacher/requests',['data'=>$requests]);
 	}
 	
 	public function resp_req($i){
@@ -32,17 +37,19 @@ class Teacher extends MY_Controller {
 		$data = array(
 			'status'     => $i,
 			'ression'    => $des,
-			'description' => $desrip
+			'description' => $desrip,
+            'admin_id' => 5
 		);
 		$result = $this->pro->req_status($data,$st_id,$c_id);
 		if($result){
-			
-			return redirect('teacher');
-		}else{
+            redirect('teacher/req');
+
+        }else{
 				
-			return redirect('teacher');
+			redirect('teacher/req');
 		}
 	}
+
 	public function logout(){
 		$this->session->unset_userdata('teacher_id');
 			return redirect('login');

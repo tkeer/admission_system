@@ -20,8 +20,8 @@ class Uni extends MY_Controller {
 	 */
 	public function __construct(){
 		parent::__construct();
-		if( $this->session->userdata('id') )
-			return redirect('student/dashboad');
+//		if( $this->session->userdata('id') )
+//			return redirect('student/dashboad');
 		$this->load->model('student','stn');
 	}
 	public function index()

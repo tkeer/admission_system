@@ -187,7 +187,7 @@ class Admin_pro extends CI_Model {
 	public function check_response($id){
 		$qry = $this->db
 					->select('status')
-					->where('st_id',$id)
+					->where('st_id', $id)
 					->get('course_request');
 			if($qry){
 				$q = $this->db->set('status',0)
@@ -207,21 +207,11 @@ class Admin_pro extends CI_Model {
 	public function req_status($data,$st_id,$c_id){
 
 
-
-
-
-		$qry = $this->db->set($data)
+        $qry = $this->db->set($data)
 					->where(['st_id'=>$st_id,'course_id'=>$c_id])
 					->update('course_request');
-					
-				$req = array(
-			'course_id'   =>   $c_id,
-			'admin_id'    =>   5,
-			'description' =>   $data['description'],
-			'st_id'       =>   $st_id
-		);
-		$qry = $this->db->insert('course_request',$req);
-		
-	}
+
+        return $qry;
+    }
 	
 }

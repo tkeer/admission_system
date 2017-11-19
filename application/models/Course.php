@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Course extends CI_Model {
+
     public function dep_list(){
         $q = $this->db->get('depart');
         return $q->result();
@@ -18,7 +19,7 @@ class Course extends CI_Model {
         return $query->row();
     }
 
-    public function insert_course($data){
+    public function insert_course($data, $isForcefully = false){
 
         $co_id	= $data['course_id'];
         $s_id	= $data['st_id'];
@@ -36,13 +37,13 @@ class Course extends CI_Model {
             'course_id'			=>  $data['course_id'],
             'st_id'             =>  $s_id
         );
-        if($query->num_rows() <= 4 ){
+        if($query->num_rows() <= 5 ){
             foreach($q as $q): // if student applied before
                 if( $data['course_id'] == $q->course_id ){
                     return 1;
                 }
             endforeach;
-            if( $seats >= 35 ){ //check for seats
+            if( $seats >= 35 && ! $isForcefully ){ //check for seats
                 return 3;
             }	echo $seats.'<br>';
             $seats =$seats + 1;
@@ -72,7 +73,7 @@ class Course extends CI_Model {
             ->join('course_list', 'course_list.course_id = course.course_id', 'left')
             ->join('teacher', 'course_list.instr_id = teacher.instr_id', 'left')
             ->join('room', 'course_list.id = room.id', 'left')
-            ->order_by('course_list.start_time')
+            ->order_by('course_list.course_name')
             ->get();
         return $query->result();
     }
@@ -113,6 +114,46 @@ class Course extends CI_Model {
             ->join('teacher', 'teacher.instr_id = course_list.instr_id', 'left')
             ->get();
         return $query->result();
+    }
+
+    public function get_by_id($id)
+    {
+        $query = $this->db->select()
+            ->from('course_list')
+            ->where('course_id', $id)
+            ->get();
+
+        $result = $query->result();
+
+        return isset($result[0]) ? $result[0] : [];
+    }
+
+    public function transcript($st_id)
+    {
+        $query = $this->db->select()
+            ->from('course_list')
+            ->join('course', 'course_list.course_id = course.course_id')
+            ->join('fall_add', 'course_list.fall_add_id = fall_add.fall_add_id')
+            ->join('teacher', 'teacher.instr_id = course_list.instr_id', 'left')
+            ->join('room', 'room.id = course_list.id', 'left')
+
+            ->where('st_id', $st_id)
+            ->get();
+
+        $arr = $query->result_array();
+
+        $result = array();
+
+        foreach ($arr as $data) {
+            $id = $data['name'];
+            if (isset($result[$id])) {
+                $result[$id][] = $data;
+            } else {
+                $result[$id] = array($data);
+            }
+        }
+
+        return $result;
     }
 }
 

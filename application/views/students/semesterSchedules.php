@@ -40,117 +40,40 @@
 <?php endif; ?>
 
 
-<div class='row'>
+<div class="row">
+
 	<div class="col-lg-10 col-lg-offset-1">
-		<table class="table table-striped" style="width:100%; border:1px solid black !important;">
-
-			<!--				<tr>-->
-			<!--					<th><strong>Days</strong></th>-->
-			<!--					<th><strong>08:00-09:00</strong></th>-->
-			<!--					<th><strong>09:00-11:00</strong></th>-->
-			<!--					<th><strong>11:00-13:00</strong></th>-->
-			<!--				</tr>-->
-			<!---->
-			<!--				<tr>-->
-			<!--					<td><strong>Monday</strong></td>-->
-			<!--					<td><strong>DSA</strong></td>-->
-			<!--					<td><strong>N/A</strong></td>-->
-			<!--					<td><strong>Operating Systems</strong></td>-->
-			<!--				</tr>-->
-			<!--				<tr>-->
-			<!--					<td><strong>Tuesday</strong></td>-->
-			<!--					<td><strong>Islamiat</strong></td>-->
-			<!--					<td><strong>Computer Networks</strong></td>-->
-			<!--					<td><strong>Databases</strong></td>-->
-			<!--				</tr>-->
-			<!--				<tr>-->
-			<!--					<td><strong>Wednesday</strong></td>-->
-			<!--					<td><strong>DSA</strong></td>-->
-			<!--					<td><strong>N/A</strong></td>-->
-			<!--					<td><strong>Operating Systems</strong></td>-->
-			<!--				</tr>-->
-			<!--				<tr>-->
-			<!--					<td><strong>Thurdsday</strong></td>-->
-			<!--					<td><strong>Islamiat</strong></td>-->
-			<!--					<td><strong>Computer Networks</strong></td>-->
-			<!--					<td><strong>Databases</strong></td>-->
-			<!--				</tr>-->
-			<!--				<tr>-->
-			<!--					<td><strong>Friday</strong></td>-->
-			<!--					<td><strong>DSA</strong></td>-->
-			<!--					<td><strong>N/A</strong></td>-->
-			<!--					<td><strong>Operating Systems</strong></td>-->
-			<!--				</tr>-->
-
-			<?php foreach($courses as $dayName => $course): ?>
+		<div class="table-responsive breadcrumb">
+			<table class="table">
+				<thead>
 				<tr>
-					<td><?php echo $dayName; ?></td>
-
-					<?php foreach($course as $l): ?>
-						<td><?php  echo $l->course_name  ?></td>
-						<td><?php  echo $l->start_time . '-' . $l->end_time  ?></td>
-					<?php endforeach; ?>
-
+					<th> Course Name </th>
+					<th> Days </th>
+					<th> Teacher Name </th>
+					<th> Timing </th>
+					<th> Room No. </th>
 				</tr>
-			<?php endforeach; ?>
+				</thead>
+				<tbody>
+				<?php foreach($courses as $course): ?>
+					<tr>
+
+						<td><?php  echo $course->course_name  ?></td>
+						<td><?php  echo $course->days  ?></td>
+						<td><?php  echo $course->teach_name  ?></td>
+						<td><?php  echo $course->time_key  ?></td>
+						<td><?php  echo $course->room_no  ?></td>
 
 
+					</tr>
+				<?php endforeach; ?>
 
-
-		</table>
+				</tbody>
+			</table>
+		</div>
 	</div>
+
 </div>
-
-
-
-<div class='row'>
-	<div class="col-lg-10 col-lg-offset-1">
-		<table class="table table-striped" style="width:100%; border:1px solid black !important;">
-
-			<thead>
-			<td><strong>Days</strong></td>
-			<td><strong>08:00-09:00</strong></td>
-			<td><strong>09:00-11:00</strong></td>
-			<td><strong>11:00-13:00</strong></td>
-			</thead>
-
-			<tbody>
-			<tr>
-				<td><strong>Monday</strong></td>
-				<td><strong>DSA</strong></td>
-				<td><strong>N/A</strong></td>
-				<td><strong>Operating Systems</strong></td>
-			</tr>
-			<tr>
-				<td><strong>Tuesday</strong></td>
-				<td><strong>Islamiat</strong></td>
-				<td><strong>Computer Networks</strong></td>
-				<td><strong>Databases</strong></td>
-			</tr>
-			<tr>
-				<td><strong>Wednesday</strong></td>
-				<td><strong>DSA</strong></td>
-				<td><strong>N/A</strong></td>
-				<td><strong>Operating Systems</strong></td>
-			</tr>
-			<tr>
-				<td><strong>Thurdsday</strong></td>
-				<td><strong>Islamiat</strong></td>
-				<td><strong>Computer Networks</strong></td>
-				<td><strong>Databases</strong></td>
-			</tr>
-			<tr>
-				<td><strong>Friday</strong></td>
-				<td><strong>DSA</strong></td>
-				<td><strong>N/A</strong></td>
-				<td><strong>Operating Systems</strong></td>
-			</tr>
-
-			</tbody>
-		</table>
-	</div>
-</div>
-
 
 
 <?php include_once('student_footer.php') ;?>

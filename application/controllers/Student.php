@@ -3,6 +3,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Student extends MY_Controller {
 
+    /**
+     * @var Course
+     *
+     */
+    public $course;
+
+    /**
+     * @var Admin_pro
+     */
+    public $pro;
+
     public function __construct(){
         parent:: __construct();
         if( ! $this->session->userdata('id'))
@@ -12,25 +23,6 @@ class Student extends MY_Controller {
         $this->load->model('admin_login', 'login');
     }
     public function index(){
-
-        //problems
-        //student call request multiple code to add
-        //rejection by the teacher is not working correct
-        //what is the request form flow
-        //request course notification will work only on student index page
-
-
-        //regular expression
-        $subject='13-23333';
-        $pattern='/\d[-]\d/';
-        $pattern='/^[0-9]{2}-[0-9]{5}$/';
-
-        $success = preg_match($pattern, $subject, $match);
-
-//        echo $success;
-//        echo '<br />';
-//
-//        die('die');
 
         $id = $this->session->userdata('id');
         $response = $this->pro->check_response($id);
@@ -76,7 +68,7 @@ class Student extends MY_Controller {
         if($selected_course_result){
             $day  =  unserialize($select_course_time->day);
 
-            foreach( $selected_course_result as $result_time ):
+            foreach($selected_course_result as $result_time):
                 $days = unserialize($result_time->days);
                 if(sizeof($day) < sizeof($days)){
                     $select_day = $day;
@@ -137,11 +129,12 @@ class Student extends MY_Controller {
         $id = $this->session->userdata('id');
         $result = $this->course->selected_subjects($id);
 
-
-//        echo '<pre>';
-//        echo print_r($result);
-//        echo '<pre />';
-//        die;
+        $res = array_map(function ($res){
+            $res->start_time = (new DateTime($res->start_time))->format('H:i');
+            $res->end_time = (new DateTime($res->end_time))->format('H:i');
+            $res->time_key = $res->start_time . '-' . $res->end_time;
+            return $res;
+        }, $result);
 
 
         if($result){
@@ -175,71 +168,18 @@ class Student extends MY_Controller {
 
         $stdCourses = $this->course->selected_subjects($id);
 
-        $stdCourses = array_map(function ($course){
-
-            $course->days = unserialize($course->days);
-
+        $stdCourses = array_map(function ($course) {
+            $course->days = implode(":", unserialize($course->days));
             $course->start_time = (new DateTime($course->start_time))->format('H:i');
             $course->end_time = (new DateTime($course->end_time))->format('H:i');
-
+            $course->time_key = $course->start_time . '-' . $course->end_time;
             return $course;
-
         }, $stdCourses);
 
-        $daywiseCourses = [];
-
-        $dayMapper = [
-            'M' => 'Monday',
-            'T' => 'Tuesday',
-            'W' => 'Wednesday',
-            'TH' => 'Thursday',
-            'F' => 'Friday',
-        ];
-
-        foreach ($stdCourses as $stdCourse)
-        {
-            foreach ($stdCourse->days as $courseDay)
-            {
-                $daywiseCourses[$dayMapper[$courseDay]][] = $stdCourse;
-            }
-        }
-
-
-//        $daywiseCourses = array_map(function ($daywiseCourse){
-//
-////            array_multisort(array_column($daywiseCourse, 0), SORT_DESC, $daywiseCourse);
-//
-//            return $daywiseCourse;
-//            echo '<pre>';
-//            print_r($daywiseCourse);
-//            echo '<pre />';
-//            die;
-//
-//
-//
-//        }, $daywiseCourses);
-
-//        echo '<pre>';
-//        print_r($daywiseCourses);
-//        echo '<pre />';
-//        die;
-//
-//        $l_f = $l[0];
-//
-//        echo '<pre>';
-//        print_r(serialize($l_f->days));
-//        echo '<pre />';
-//
-//        echo '<pre>';
-//        print_r($l_f);
-//        echo '<pre />';
-//
-//        echo '<pre>';
-//        print_r($l);
-//        echo '<pre />';
-//        die;
-
-        $this->load->view('students/semesterSchedules',['result'=>$result, 'courses' => $daywiseCourses]);
+        $this->load->view('students/semesterSchedules', [
+            'result'=>$result,
+            'courses' => $stdCourses,
+        ]);
     }
 
     public function update_pass(){
@@ -259,6 +199,7 @@ class Student extends MY_Controller {
     }
 
     public function req_course($id){
+
         $this->load->view('students/req',['id'=>$id]);
     }
 
@@ -266,6 +207,10 @@ class Student extends MY_Controller {
 
         $st_id = $this->session->userdata('id');
         $des =  $this->input->post('des');
+        $course = $this->course->get_by_id($id);
+
+        //teacher session id is used 3
+//        $teacher_id = $course->instr_id;
 
         $req = array(
             'course_id'   =>   $id,
@@ -373,6 +318,38 @@ class Student extends MY_Controller {
         }
         $result .='</table>';
         echo json_encode($result);
+    }
+
+    public function transcript()
+    {
+        $st_id = $this->session->userdata('id');
+        $transcript = $this->course->transcript($st_id);
+
+
+        $transcript = array_map(function ($courses) {
+
+            return array_map(function ($course){
+
+                $course['days'] = implode(":", unserialize($course['days']));
+                $course['start_time'] = (new DateTime($course['start_time']))->format('H:i');
+                $course['end_time'] = (new DateTime($course['end_time']))->format('H:i');
+                $course['time_key'] = $course['start_time'] . '-' . $course['end_time'];
+                return $course;
+
+
+            }, $courses);
+
+        }, $transcript);
+
+
+//        echo '<pre>';
+//        print_r($transcript);
+//        die;
+
+
+        $this->load->view('students/transcript', [
+            'result' => $transcript,
+        ]);
     }
 
 }
