@@ -5,12 +5,6 @@ class Admin_login extends CI_Model {
 
     public function login($email,$pass){
 
-
-//        echo '<pre>';
-//        print_r(func_get_args());
-//        die;
-
-
         $query =	$this->db->select()
             ->from('admin')
             ->where(['email'=>$email,'pass'=>$pass])
@@ -24,6 +18,22 @@ class Admin_login extends CI_Model {
         }
 
     }
+
+    public function teacher_login($email, $pass)
+    {
+        $query = $this->db->select()
+            ->from('teacher')
+            ->where(['teach_name'=>$email,'pass'=>$pass])
+            ->get();
+
+        if($query->num_rows() > 0 ) {
+            return $query->row();
+        } else {
+            return FALSE;
+        }
+
+    }
+
     public function pass($id){
         $query =	$this->db->select()
             ->from('admin')

@@ -38,56 +38,53 @@
 
 <body>
 
-<div id="wrapper">
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="<?php echo base_url('student');?>">Students Portal</a>
+    </div>
+    <!-- Top Menu Items -->
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="<?php echo base_url('student');?>">Students Portal</a>
-        </div>
-        <!-- Top Menu Items -->
+    <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav side-nav">
+            <li class="active">
+                <a href="<?= base_url('student');?>"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+            </li>
+            <li >
+                <a href="<?= base_url('student/dashboad');?>"><i class="fa fa-fw fa-dashboard"></i> Add Courses</a>
+            </li>
+            <li>
+                <a href="<?= base_url('student/subjects');?>"><i class="fa fa-fw fa-dashboard"></i> Subjects</a>
+            </li>
+            <li>
+                <a href="<?= base_url('student/semesterSchedules');?>"><i class="fa fa-fw fa-dashboard"></i> Semester Schedules</a>
+            </li>
 
-        <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
-            <ul class="nav navbar-nav side-nav">
-                <li class="active">
-                    <a href="<?= base_url('student');?>"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
-                </li>
-                <li >
-                    <a href="<?= base_url('student/dashboad');?>"><i class="fa fa-fw fa-dashboard"></i> Add Courses</a>
-                </li>
-                <li>
-                    <a href="<?= base_url('student/subjects');?>"><i class="fa fa-fw fa-dashboard"></i> Subjects</a>
-                </li>
-                <li>
-                    <a href="<?= base_url('student/semesterSchedules');?>"><i class="fa fa-fw fa-dashboard"></i> Semester Schedules</a>
-                </li>
+            <li>
+                <a href="<?php echo base_url('student/edit_pass');?>"><i class="fa fa-fw fa-edit"></i> Profile</a>
+            </li>
+            <li>
+                <a href="<?= base_url('student/transcript');?>"><i class="fa fa-fw fa-dashboard"></i> Transcript</a>
+            </li>
+            <li>
+                <a href="<?php echo base_url('student/logout');?>" class="fa fa-power-off"?> Logout</a>
+            </li>
 
-                <li>
-                    <a href="<?php echo base_url('student/edit_pass');?>"><i class="fa fa-fw fa-edit"></i> Profile</a>
-                </li>
-                <li>
-                    <a href="<?= base_url('student/transcript');?>"><i class="fa fa-fw fa-dashboard"></i> Transcript</a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url('student/logout');?>" class="fa fa-power-off"?> Logout</a>
-                </li>
+        </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+</nav>
 
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </nav>
 
-    <div id="page-wrapper">
-
-        <div class="container-fluid">
+        <div class="container" style="background-color:white;">
 
             <!-- Page Heading -->
             <div class="row">

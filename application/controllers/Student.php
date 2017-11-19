@@ -253,11 +253,11 @@ class Student extends MY_Controller {
         $course = $this->course->get_by_id($id);
 
         //teacher session id is used 3
-//        $teacher_id = $course->instr_id;
+        $teacher_id = $course->instr_id;
 
         $req = array(
             'course_id'   =>   $id,
-            'admin_id'    =>   3,
+            'admin_id'    =>   $teacher_id,
             'description' =>   $des,
             'st_id'       =>   $st_id
         );
