@@ -14,22 +14,34 @@ class Student extends MY_Controller {
      */
     public $pro;
 
-    public function __construct(){
+    public function __construct()
+    {
         parent:: __construct();
         if( ! $this->session->userdata('id'))
             return redirect('uni');
+
         $this->load->model('course');
         $this->load->model('admin_pro','pro');
         $this->load->model('admin_login', 'login');
     }
+
     public function index(){
 
         $id = $this->session->userdata('id');
         $response = $this->pro->check_response($id);
+
+        if(! $response)
+        {
+            $this->load->view('students/dashboard');
+            return;
+        }
+
         $resp = $response->status;
+
         if($resp==0){
             $this->load->view('students/dashboard');
         }
+
         if($resp==1){
             $this->session->set_flashdata('item', 'Your Request rejected by Teacher !');
             $this->load->view('students/dashboard');
@@ -60,16 +72,33 @@ class Student extends MY_Controller {
 
     public function add_course($course_id){
 
-        $select_course_time = $this->course->check_date($course_id);
-        $strt_time = $select_course_time->start_time;
+        $st_id = $this->session->userdata('id');
+        //get student selected course to add
+        $course_to_add = $this->course->check_date($course_id);
+
+//        echo '<pre>';
+//        print_r($course_to_add);
+//        die;
+
+        $strt_time = $course_to_add->start_time;
         // this code is for time check...  you can remove this if you want to check other conditions like five course
         // and already selected or not...etc
-        $selected_course_result = $this->course->course_list(); //already selected course in list of student...
-        if($selected_course_result){
-            $day  =  unserialize($select_course_time->day);
+        $selected_course_results = $this->course->course_list($st_id); //already selected course in list of student...
 
-            foreach($selected_course_result as $result_time):
-                $days = unserialize($result_time->days);
+
+//        echo '<pre>';
+//        print_r($selected_course_results);
+//        die;
+
+
+        if($selected_course_results){
+
+
+
+            $day  =  unserialize($course_to_add->day);
+
+            foreach($selected_course_results as $selected_course_result):
+                $days = unserialize($selected_course_result->days);
                 if(sizeof($day) < sizeof($days)){
                     $select_day = $day;
                     $select_days = $days;
@@ -78,23 +107,34 @@ class Student extends MY_Controller {
                     $select_day = $days;
                     $select_days = $day;
                 }
+
+
                 for($i=0;$i < sizeof($select_day); $i++){
 
                     for($j=0;$j<sizeof($select_days);$j++){
 
                         if($select_day[$i] == $select_days[$j]){
 
-                            $created = $result_time->time.'<br>';
-                            list($firstMinutes, $firstSeconds) = explode(':', $created);
-                            $firstSeconds += ($firstMinutes * 60);
-
-                            list($secondMinutes, $secondSeconds) = explode(':', $strt_time);
-                            $secondSeconds += ($secondMinutes * 60);
-                            $diff = $secondSeconds - $firstSeconds;
-                            if($diff == 0){
-                                $this->session->set_flashdata('item', 'Please Select another Course Time Clash Error');
+                            if(($selected_course_result->start_time < $course_to_add->end_time)
+                                && ($course_to_add->start_time < $selected_course_result->end_time))
+                            {
+                                $this->session->set_flashdata('item', 'Please Select another Course, Time Clash Error with ' . $selected_course_result->course_name);
                                 return redirect('student/dashboad');
+
                             }
+
+//
+//                            $created = $selected_course_result->time.'<br>';
+//                            list($firstMinutes, $firstSeconds) = explode(':', $created);
+//                            $firstSeconds += ($firstMinutes * 60);
+//
+//                            list($secondMinutes, $secondSeconds) = explode(':', $strt_time);
+//                            $secondSeconds += ($secondMinutes * 60);
+//                            $diff = $secondSeconds - $firstSeconds;
+//                            if($diff == 0){
+//                                $this->session->set_flashdata('item', 'Please Select another Course Time Clash Error');
+//                                return redirect('student/dashboad');
+//                            }
 
                         }
                     }
@@ -102,14 +142,17 @@ class Student extends MY_Controller {
                 }
             endforeach;
         }  // remove this for checking condition
+
         $id = $this->session->userdata('id');
+
         $data = array(
             'course_id'    => 	$course_id,
             'st_id' 	   => 	$id,
-            'time'         =>   $select_course_time->start_time,
-            'days'         =>   $select_course_time->day
+            'time'         =>   $course_to_add->start_time,
+            'days'         =>   $course_to_add->day
         );
         $result = $this->course->insert_course($data);
+
         if($result == 1){
             $this->session->set_flashdata('item', 'You have Already selected this course.');
             return redirect('student/dashboad');

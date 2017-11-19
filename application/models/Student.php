@@ -8,16 +8,15 @@ class Student extends CI_Model {
         return $q;
     }
 
-    public function login($email,$pass)
+    public function login($rollNumber, $pass)
     {
         $q = $this->db
-            ->where(['st_id'=> $email,'pass'=>$pass])
+            ->where(['roll_number'=> $rollNumber,'pass'=>$pass])
             ->get('student_registeration');
-        if($q->num_rows() > 0 ) {
-            return  $q->row()->st_id;
-        } else {
-            echo "Hello";exit;
-        }
+
+
+        return $q->num_rows() > 0 ? $q->row()->st_id : null;
+
     }
 
 

@@ -297,6 +297,7 @@ class Admin extends MY_Controller {
         }
     }
     public function sub(){
+
         $sec = $this->pro->list_sess();
         $dep = $this->pro->list_dep();
         $teach = $this->pro->list_teach();

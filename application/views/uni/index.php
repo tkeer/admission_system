@@ -1,6 +1,20 @@
 <?php include_once "header.php"?>
 <div class="welcome">
 	 <div class="container">
+
+
+		 <?php if($error = $this->session->flashdata('subject_error')): ?>
+			 <div class="row">
+				 <div class="col-md-4 col-md-offset-2">
+					 <div class="alert alert-danger">
+						 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						 <strong><?= $error;?></strong>
+					 </div>
+				 </div>
+			 </div>
+		 <?php endif; ?>
+
+
 		 <div class="welcm_sec">
 			 
 			 <div class="col-md-10 campus col-md-offset-1">

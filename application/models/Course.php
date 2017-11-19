@@ -8,9 +8,15 @@ class Course extends CI_Model {
         return $q->result();
 
     }
-    public function course_list(){
-        $q = $this->db->get('course');
-        return $q->result();
+    public function course_list($st_id){
+
+        $query = $this->db->select()
+            ->from('course')
+            ->join('course_list', 'course_list.course_id = course.course_id', 'left')
+            ->where('st_id', $st_id)
+            ->get();
+
+        return $query->result();
     }
     public function check_date($course_id){
         $query = $this->db
@@ -37,7 +43,7 @@ class Course extends CI_Model {
             'course_id'			=>  $data['course_id'],
             'st_id'             =>  $s_id
         );
-        if($query->num_rows() <= 5 ){
+        if($query->num_rows() <= 4 ){
             foreach($q as $q): // if student applied before
                 if( $data['course_id'] == $q->course_id ){
                     return 1;
@@ -134,9 +140,6 @@ class Course extends CI_Model {
             ->from('course_list')
             ->join('course', 'course_list.course_id = course.course_id')
             ->join('fall_add', 'course_list.fall_add_id = fall_add.fall_add_id')
-            ->join('teacher', 'teacher.instr_id = course_list.instr_id', 'left')
-            ->join('room', 'room.id = course_list.id', 'left')
-
             ->where('st_id', $st_id)
             ->get();
 
