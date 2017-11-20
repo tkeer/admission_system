@@ -334,7 +334,7 @@ class Admin extends MY_Controller {
             'instr_id'      =>  $cons_id,
             'des' 			=> $comment,
             'day'           => $days,
-            'avail'         =>35
+            'avail'         => 10
         );
 
         $result = $this->pro->add_sub($data);

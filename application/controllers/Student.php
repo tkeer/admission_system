@@ -372,7 +372,7 @@ class Student extends MY_Controller {
                 . '<td>'.$day.'</td>'
                 . '<td>'.$province->time_key.'</td>'
                 . '<td>'.$province->teach_name.'</td>'
-                . '<td>35</td>'
+                . '<td>10</td>'
                 . '<td>'.$province->avail.'</td>'
                 .'</tr>';
         }

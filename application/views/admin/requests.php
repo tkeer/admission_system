@@ -1,5 +1,5 @@
 <?php include 'student_header.php'; ?>
-    <table class="table table-striped table-hover table-bordered">
+    <table class="table table-striped table-hover table-bordered" style="width: 80%; float: right">
         <thead class="thead-dark">
         <tr>
             <th>Student ID.</th>
