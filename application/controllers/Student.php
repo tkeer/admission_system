@@ -44,24 +44,22 @@ class Student extends MY_Controller {
 
         if($resp==1){
             $this->session->set_flashdata('item', 'Your Request rejected by Teacher !');
-            $this->load->view('students/dashboard');
         }if($resp==2){
             $this->session->set_flashdata('item', 'Your Request accepted by Teacher and forword to HOD!');
-            $this->load->view('students/dashboard');
         }if($resp==3){
             $this->session->set_flashdata('item', 'Your Request rejected by HOD !');
-            $this->load->view('students/dashboard');
         }if($resp==4){
             $this->session->set_flashdata('item', 'Your Request accepted by HOD and forword to Dean!');
-            $this->load->view('students/dashboard');
         }if($resp==5){
             $this->session->set_flashdata('item', 'Your Request rejected by Dean !');
-            $this->load->view('students/dashboard');
         }if($resp==6){
             $this->session->set_flashdata('item', 'Your Request accept successfully! enjoy this course');
-            $this->load->view('students/dashboard');
+        }if($resp==7){
+            $this->session->set_flashdata('item', 'Your have been enrolled in request course.');
         }
-        echo 'not set';
+
+        return $this->load->view('students/dashboard');
+
     }
     public function dashboad(){
         $result = $this->course->dep_list();
@@ -243,7 +241,18 @@ class Student extends MY_Controller {
 
     public function req_course($id){
 
-        $this->load->view('students/req',['id'=>$id]);
+        $st_id = $this->session->userdata('id');
+        $is_requested = $this->course->is_requested($id, $st_id);
+
+        if(! $is_requested)
+        {
+            return $this->load->view('students/req',['id'=>$id]);
+        }
+
+
+        $this->session->set_flashdata('item', 'You have already requested this course.');
+        redirect($_SERVER['HTTP_REFERER']);
+
     }
 
     public function req_sub($id){
@@ -259,7 +268,8 @@ class Student extends MY_Controller {
             'course_id'   =>   $id,
             'admin_id'    =>   $teacher_id,
             'description' =>   $des,
-            'st_id'       =>   $st_id
+            'st_id'       =>   $st_id,
+            'teacher_id' => $teacher_id
         );
 
         $result = $this->login->req_sub_teach($req);
@@ -316,6 +326,7 @@ class Student extends MY_Controller {
             . '<th>Term</th>'
             . '<th>Department</th>'
             . '<th>Course</th>'
+            . '<th>Course ID</th>'
             . '<th>Cr</th>'
             . '<th>Room</th>'
             . '<th>Start Date</th>'
@@ -349,6 +360,7 @@ class Student extends MY_Controller {
             $result .= '<td>'.$province->name.'</td>'
                 . '<td>'.$province->dp_name.'</td>'
                 . '<td>'.$province->course_name.'</td>'
+                . '<td>'.$province->courses_id.'</td>'
                 . '<td>'.$province->cr.'</td>'
                 . '<td>'.$province->room_no.'</td>'
                 . '<td>'.$province->start_date.'</td>'

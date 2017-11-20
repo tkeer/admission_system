@@ -22,9 +22,9 @@ class Teacher extends MY_Controller {
     public function req(){
         $id = $this->session->userdata('teacher_id');
 
-        $requests = $this->pro->request($id);
+        $requests = $this->pro->teacher_request($id);
         $requests = $requests ? $requests : [];
-        $id =7;
+
         $processed_requests = $this->pro->teacher_processed_request($id);
 
         $processed_requests = $processed_requests ? $processed_requests : [];
@@ -46,6 +46,7 @@ class Teacher extends MY_Controller {
             'status'     => $i,
             'ression'    => $des,
             'description' => $desrip,
+            'teacher_processed' => 1,
             'admin_id' => 5
         );
         $result = $this->pro->req_status($data,$st_id,$c_id);

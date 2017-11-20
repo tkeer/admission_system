@@ -336,9 +336,10 @@ class Admin extends MY_Controller {
             'day'           => $days,
             'avail'         =>35
         );
+
         $result = $this->pro->add_sub($data);
         if($result){
-            $this->session->set_flashdata('add_session', 'You have successfully Deleted the Record.');
+            $this->session->set_flashdata('add_session', 'A new course has been added successfully!');
             return redirect('admin/List_sub');
         }else{
             $this->session->set_flashdata('faild_session', 'Query faild, please try Again !');
@@ -402,7 +403,7 @@ class Admin extends MY_Controller {
         );
         $result = $this->pro->update_sub($data,$id);
         if($result){
-            $this->session->set_flashdata('add_session', 'You have successfully Deleted the Record.');
+            $this->session->set_flashdata('add_session', 'Course has been updated successfully!');
             return redirect('admin/List_sub');
         }else{
             $this->session->set_flashdata('faild_session', 'Query faild, please try Again !');

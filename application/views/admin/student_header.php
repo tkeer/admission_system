@@ -191,18 +191,6 @@
 	</div>
 
 	<div class="row">
-		<div class="col-md-5 col-md-offset-3">
-			<h3 style="margin-bottom: 50px;">
-				For Admition Open
-			</h3>
-		</div>
-		<div class="col-md-4">
-			<?php $i=1;?>
-			<?php  echo anchor("admin/ad_open/1",'OPEN',['class'=>'btn btn-primary but_pri']);?>
-			<?php  echo anchor("admin/ad_close/0",'CLOSE',['class'=>'btn btn-primary but_pri']);?>
-		</div>
-	</div>
-	<div class="row">
 		<?php if($error = $this->session->flashdata('add_session')): ?>
 			<div class="row">
 				<div class="col-md-4 col-md-offset-2">

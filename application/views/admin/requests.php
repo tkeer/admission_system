@@ -11,8 +11,8 @@
         <tbody>
         <tr>
             <?php foreach($data as $data):?>
-            <td><?php echo $data->st_id?></td>
-            <td><?php echo $data->course_id?></td>
+            <td><?php echo $data->roll_number?></td>
+            <td><?php echo $data->courses_id?></td>
             <td><?php echo $data->description?></td>
 
             <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal">Enroll</button>

@@ -14,8 +14,8 @@
         <tbody>
         <tr>
             <?php foreach($data as $data):?>
-            <td><?php echo $data->st_id?></td>
-            <td><?php echo $data->course_id?></td>
+            <td><?php echo $data->roll_number?></td>
+            <td><?php echo $data->courses_id?></td>
             <td><?php echo $data->description?></td>
 
             <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal">Accept</button>
@@ -39,12 +39,8 @@
                                 <input type="hidden" name="st_id" value="<?php echo $data->st_id;?>"  >
                                 <input type="hidden" name="c_id" value="<?php echo $data->course_id;?>"  >
                                 <input type="hidden" name="des_data" value="<?php echo $data->description;?>"  >
-                                <div class="form-group">
-                                    <label for="exampleTextarea">Description</label>
-                                    <textarea name="des" class="form-control" id="exampleTextarea" rows="3" required="true"></textarea>
-                                </div>
 
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">Reject</button>
                             </fieldset>
                         </form>
                     </div>
@@ -72,12 +68,8 @@
                                 <input type="hidden" name="st_id" value="<?php echo $data->st_id;?>"  >
                                 <input type="hidden" name="c_id" value="<?php echo $data->course_id;?>"  >
                                 <input type="hidden" name="des_data" value="<?php echo $data->description;?>"  >
-                                <div class="form-group">
-                                    <label for="exampleTextarea">Description</label>
-                                    <textarea name="des" class="form-control" id="exampleTextarea" rows="3" required="true"></textarea>
-                                </div>
 
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">Accept</button>
                             </fieldset>
                         </form>
                     </div>

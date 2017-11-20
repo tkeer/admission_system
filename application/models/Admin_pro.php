@@ -132,8 +132,10 @@ class Admin_pro extends CI_Model {
         return $query;
     }
     public function add_sub($data){
+
         $q = $this->db
             ->insert('course_list', $data);
+
         return $q;
     }
     public function list_sub(){
@@ -172,14 +174,12 @@ class Admin_pro extends CI_Model {
     public function update_status($id){
         $data = array('status'=>$id);
         $query = $this->db->set($data)
-            ->where('fall_add_id', 2)
             ->update('fall_add');
         return $query;
     }
 
     public function check_status(){
         $qry = $this->db->select('status')
-            ->where('fall_add_id', 2)
             ->get('fall_add');
         return $qry->row();
     }
@@ -188,13 +188,16 @@ class Admin_pro extends CI_Model {
         $qry = $this->db
             ->select('status')
             ->where('st_id', $id)
+            ->where('status !=', 0)
             ->get('course_request');
-        if($qry){
-            $q = $this->db->set('status',0)
-                ->where(['st_id'=>$id])
-                ->update('course_request');
-        }
-        return $qry->row();
+
+        $result = $qry->row();
+
+        $this->db->set('status',0)
+            ->where(['st_id'=>$id])
+            ->update('course_request');
+
+        return $result;
     }
 
     public function request($id){
@@ -203,6 +206,18 @@ class Admin_pro extends CI_Model {
             ->join('course_list', 'course_list.course_id = course_request.course_id')
             ->join('student_registeration', 'student_registeration.st_id = course_request.st_id')
             ->where('admin_id',$id)
+            ->where('teacher_processed', 1)
+            ->get('course_request');
+        return $qry->result();
+    }
+
+    public function teacher_request($id){
+        $qry = $this->db
+            ->select()
+            ->join('course_list', 'course_list.course_id = course_request.course_id')
+            ->join('student_registeration', 'student_registeration.st_id = course_request.st_id')
+            ->where('teacher_id', $id)
+            ->where('teacher_processed', 0)
             ->get('course_request');
         return $qry->result();
     }
@@ -213,13 +228,13 @@ class Admin_pro extends CI_Model {
             ->select()
             ->join('course_list', 'course_list.course_id = course_request.course_id')
             ->join('student_registeration', 'student_registeration.st_id = course_request.st_id')
-            ->where('instr_id', $id)
             ->where('admin_id !=', $id)
+            ->where('teacher_id =', $id)
             ->get('course_request');
         return $qry->result();
     }
 
-    public function req_status($data,$st_id,$c_id){
+    public function req_status($data, $st_id, $c_id){
 
 
         $qry = $this->db->set($data)

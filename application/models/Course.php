@@ -158,6 +158,16 @@ class Course extends CI_Model {
 
         return $result;
     }
+
+    public function is_requested($course_id, $st_id)
+    {
+        $query = $this->db
+            ->where('course_id',$course_id)
+            ->where('st_id',$st_id)
+            ->get('course_request');
+        return $query->row();
+
+    }
 }
 
 
