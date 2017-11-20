@@ -44,7 +44,7 @@
     <div class="row">
             
     </div>        
-    <div id="result" class="col-md-12">
+    <div id="result" style="overflow-x: scroll" class="col-md-12">
                     
     </div>
         
