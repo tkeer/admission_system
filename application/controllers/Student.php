@@ -355,6 +355,11 @@ class Student extends MY_Controller {
                 $reqAttributes['disabled'] = 'disabled';
             }
 
+            $province->start_time = (new DateTime($province->start_time))->format('H:i');
+            $province->end_time = (new DateTime($province->end_time))->format('H:i');
+            $province->time_key = $province->start_time . '-' . $province->end_time;
+
+
             $result .= '<td>'.anchor("student/add_course/{$province->course_id}",'Add', $addAttributes).'</td>';
             $result .= '<td>'.anchor("student/req_course/{$province->course_id}",'REQ', $reqAttributes).'</td>';
             $result .= '<td>'.$province->name.'</td>'
@@ -365,7 +370,7 @@ class Student extends MY_Controller {
                 . '<td>'.$province->room_no.'</td>'
                 . '<td>'.$province->start_date.'</td>'
                 . '<td>'.$day.'</td>'
-                . '<td>'.$province->start_time.'</td>'
+                . '<td>'.$province->time_key.'</td>'
                 . '<td>'.$province->teach_name.'</td>'
                 . '<td>35</td>'
                 . '<td>'.$province->avail.'</td>'

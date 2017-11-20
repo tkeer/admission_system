@@ -349,6 +349,16 @@ class Admin extends MY_Controller {
     public function List_sub(){
         $result = $this->pro->list_sub();
         if($result){
+
+
+            $result = array_map(function ($course) {
+                $course->start_time = (new DateTime($course->start_time))->format('H:i');
+                $course->end_time = (new DateTime($course->end_time))->format('H:i');
+                $course->time_key = $course->start_time . '-' . $course->end_time;
+                return $course;
+            }, $result);
+
+
             $this->load->view('admin/list_subject', ['result'=>$result]);
         }else{
             $this->session->set_flashdata('faild_session', 'Query faild, please try Again !');

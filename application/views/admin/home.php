@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-md-5 col-md-offset-3">
         <h3 style="margin-bottom: 50px;">
-            For Admition Open
+            For Registration Open
         </h3>
     </div>
     <div class="col-md-4">
