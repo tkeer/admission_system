@@ -27,7 +27,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Rejection Ression</h4>
+                        <h4 class="modal-title">Reject</h4>
                     </div>
                     <div class="modal-body">
                         <form action="<?php echo base_url('admin/resp_req/7');?>" method="POST" >

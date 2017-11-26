@@ -31,7 +31,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Rejection Ression</h4>
+                        <h4 class="modal-title">Reject</h4>
                     </div>
                     <div class="modal-body">
                         <form action="<?php echo base_url('teacher/resp_req/'.'1');?>" method="POST" >
@@ -96,6 +96,7 @@
             <th>Student ID.</th>
             <th>Course ID.</th>
             <th>Description</th>
+            <th>Status</th>
         </tr>
         </thead>
         <tbody>
@@ -107,6 +108,7 @@
                 <td><?php echo $processed_request->roll_number?></td>
                 <td><?php echo $processed_request->courses_id?></td>
                 <td><?php echo $processed_request->description?></td>
+                <td><?php echo ($processed_request->admin_id == -1 ? 'Rejected by you!' : 'Accepted by you!')?></td>
 
             </tr>
 

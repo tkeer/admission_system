@@ -43,19 +43,23 @@ class Student extends MY_Controller {
         }
 
         if($resp==1){
-            $this->session->set_flashdata('item', 'Your Request rejected by Teacher !');
+            $this->session->set_flashdata('std_course_request', 'Your Request rejected by Teacher !');
         }if($resp==2){
-            $this->session->set_flashdata('item', 'Your Request accepted by Teacher and forword to HOD!');
+            $this->session->set_flashdata('std_course_request', 'Your Request accepted by Teacher and forword to HOD!');
         }if($resp==3){
-            $this->session->set_flashdata('item', 'Your Request rejected by HOD !');
+            $this->session->set_flashdata('std_course_request', 'Your Request rejected by HOD !');
         }if($resp==4){
-            $this->session->set_flashdata('item', 'Your Request accepted by HOD and forword to Dean!');
+            $this->session->set_flashdata('std_course_request', 'Your Request accepted by HOD and forword to Dean!');
         }if($resp==5){
-            $this->session->set_flashdata('item', 'Your Request rejected by Dean !');
+            $this->session->set_flashdata('std_course_request', 'Your Request rejected by Dean !');
         }if($resp==6){
-            $this->session->set_flashdata('item', 'Your Request accept successfully! enjoy this course');
+            $this->session->set_flashdata('std_course_request', 'Your Request accept successfully! enjoy this course');
         }if($resp==7){
-            $this->session->set_flashdata('item', 'Your have been enrolled in request course.');
+            $this->session->set_flashdata('std_course_request', 'Your have been enrolled in request course.');
+        }if($resp==8){
+            $this->session->set_flashdata('std_course_request', 'Request Course Error! You already has been enrolled in this course!');
+        }if($resp==9){
+            $this->session->set_flashdata('std_course_request', 'Request Course Error! Maximum enrolled course limit already reached!');
         }
 
         return $this->load->view('students/dashboard');

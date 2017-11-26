@@ -27,6 +27,7 @@ class Course extends CI_Model {
 
     public function insert_course($data, $isForcefully = false){
 
+
         $co_id	= $data['course_id'];
         $s_id	= $data['st_id'];
         $query = $this->db
@@ -43,6 +44,7 @@ class Course extends CI_Model {
             'course_id'			=>  $data['course_id'],
             'st_id'             =>  $s_id
         );
+
         if($query->num_rows() <= 4 ){
             foreach($q as $q): // if student applied before
                 if( $data['course_id'] == $q->course_id ){

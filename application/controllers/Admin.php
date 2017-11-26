@@ -444,12 +444,11 @@ class Admin extends MY_Controller {
         $c_id = $this->input->post('c_id');
 
 
-        $data = array(
+        $request_status = array(
             'status'     => $i,
             'admin_id' => 0
         );
 
-        $result = $this->pro->req_status($data,$st_id,$c_id);
         $course = $this->course->get_by_id($c_id);
 
 
@@ -461,15 +460,22 @@ class Admin extends MY_Controller {
         );
         $result = $this->course->insert_course($data);
 
-        if($result == 0)
+        if($result == 1)
         {
+            $request_status['status'] = 8;
             $this->session->set_flashdata('faild_session', 'Student already has been enrolled in this course!');
         }
-        else
+        else if($result == 2)
         {
             $this->session->set_flashdata('add_session', 'Student add to course successfully!');
         }
+        else if($result == 0)
+        {
+            $request_status['status'] = 9;
+            $this->session->set_flashdata('faild_session', 'Maximum enrolled course limit of the student already reached!');
+        }
 
+        $result = $this->pro->req_status($request_status, $st_id,$c_id);
         redirect('admin/req');
     }
 

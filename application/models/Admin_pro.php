@@ -236,7 +236,6 @@ class Admin_pro extends CI_Model {
 
     public function req_status($data, $st_id, $c_id){
 
-
         $qry = $this->db->set($data)
             ->where(['st_id'=>$st_id,'course_id'=>$c_id])
             ->update('course_request');

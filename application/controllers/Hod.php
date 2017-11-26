@@ -40,7 +40,7 @@ class Hod extends MY_Controller {
             'status'     => $i,
             'ression'    => $des,
             'description' => $desrip,
-            'admin_id' => 7
+            'admin_id' => $i == 4 ? 7 : -2
         );
         $result = $this->pro->req_status($data,$st_id,$c_id);
         if($result){

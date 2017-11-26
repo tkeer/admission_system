@@ -47,7 +47,7 @@ class Teacher extends MY_Controller {
             'ression'    => $des,
             'description' => $desrip,
             'teacher_processed' => 1,
-            'admin_id' => 5
+            'admin_id' => $i == 1 ? -1 : 5
         );
         $result = $this->pro->req_status($data,$st_id,$c_id);
         if($result){

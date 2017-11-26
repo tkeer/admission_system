@@ -2,7 +2,12 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Dean extends MY_Controller {
-	
+
+    /**
+     * @var Admin_pro
+     */
+    public $pro;
+
 	public function __construct(){
 		parent::__construct();
 		if( ! $this->session->userdata('dean_id'))
@@ -35,7 +40,7 @@ class Dean extends MY_Controller {
             'status'     => $i,
             'ression'    => $des,
             'description' => $desrip,
-            'admin_id' => 1
+            'admin_id' => $i == 6 ? 1 : -3
         );
 
         $result = $this->pro->req_status($data,$st_id,$c_id);
