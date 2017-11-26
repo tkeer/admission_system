@@ -49,11 +49,11 @@ class Course extends CI_Model {
                     return 1;
                 }
             endforeach;
-            if( $seats >= 35 && ! $isForcefully ){ //check for seats
+            if( $seats >= 10 && ! $isForcefully ){ //check for seats
                 return 3;
             }	echo $seats.'<br>';
             $seats =$seats + 1;
-            $remaining = 35 - $seats;
+            $remaining = 10 - $seats;
             $seat = array('avail'=>$remaining);
 
             $this->db->set($seat)

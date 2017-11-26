@@ -412,4 +412,18 @@ class Student extends MY_Controller {
         ]);
     }
 
+
+    public function roadmap()
+    {
+                $this->load->view('students/roadmap');
+
+    }
+
+    public function general_education()
+    {
+                $this->load->view('students/GeneralEducation');
+
+    }
+
+
 }

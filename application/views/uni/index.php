@@ -19,29 +19,9 @@
 			 
 			 <div class="col-md-10 campus col-md-offset-1">
 				 <div class="campus_head">
-					 <h3>Welcome To University Of East London</h3>
-					 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-					 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-					 when an unknown printer took a galley of type and scrambled it to make a
-					 type specimen book. It has survived not only five centuries, but also the leap
-					 into electronic typesetting, remaining essentially unchanged. It was popularised 
-					 in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-					 and more recently with desktop 
-					 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-					 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-					 when an unknown printer took a galley of type and scrambled it to make a
-					 type specimen book. It has survived not only five centuries, but also the leap
-					 into electronic typesetting, remaining essentially unchanged. It was popularised 
-					 in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-					 and more recently with desktop 
-					 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-					 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-					 when an unknown printer took a galley of type and scrambled it to make a
-					 type specimen book. It has survived not only five centuries, but also the leap
-					 into electronic typesetting, remaining essentially unchanged. It was popularised 
-					 in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-					 and more recently with desktop 
-					 publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+					 <h3>Welcome To Forman Christian College (A Chartered University)</h3>
+					 <p>Forman Christian College was founded in 1864 by DR Charles W Forman, a presbyterian missionary from the USA. The college was initially known as the Lahore Mission College but in 1894 the name was officially changed to Forman Christian College (FCC) in the honour of the founder. In 2004 FCC became a chartered university and from 2009 onwards has awarded its own degrees.
+					 For many decades, FCC has been widely recognized for its meritorious work of nurtring and consolidatig the social and intellectual capital of Pakistan. The College moto "By Love Serve one another" has been a guiding principle for formanites throughout the history of the college.</p>
 				 </div>
 				 
 				 

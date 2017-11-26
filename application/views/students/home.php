@@ -33,7 +33,7 @@
 				</div>
 			</div>
     </div><?php }else{ 
-		echo "<h3>Admition close....</h3>";
+		echo "<h3>Registration Closed....!!!</h3>";
 	}?>
 	<div class='row'>   
 		<div class="col-lg-10 col-lg-offset-1">

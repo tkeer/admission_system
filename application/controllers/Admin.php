@@ -520,7 +520,7 @@ class Admin extends MY_Controller {
     public function ad_open($i){
         $status = $this->pro->update_status($i);
         if($status){
-            $this->session->set_flashdata('add_session', 'Admition Successfully SET');
+            $this->session->set_flashdata('add_session', 'Registration Successfully Open');
             return redirect('admin');
         }
     }
@@ -528,7 +528,7 @@ class Admin extends MY_Controller {
     public function ad_close($i){
         $status = $this->pro->update_status($i);
         if($status){
-            $this->session->set_flashdata('add_session', 'Admition Successfully CLOSE');
+            $this->session->set_flashdata('add_session', 'Registration Successfully CLOSE');
             return redirect('admin');
         }
     }

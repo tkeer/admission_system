@@ -73,6 +73,13 @@
                     <li>
                         <a href="<?php echo base_url('student/edit_pass');?>"><i class="fa fa-fw fa-edit"></i> Profile</a>
                     </li>
+                                        <li>
+                        <a href="<?php echo base_url('student/roadmap');?>"><i class="fa fa-fw fa-edit"></i> Roadmap</a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url('student/general_education');?>"><i class="fa fa-fw fa-edit"></i> General Education</a>
+                    </li>
+
                     <li>
                             <a href="<?php echo base_url('student/logout');?>" class="fa fa-power-off"?> Logout</a>
                     </li>
