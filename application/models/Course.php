@@ -55,6 +55,12 @@ class Course extends CI_Model {
             }	echo $seats.'<br>';
             $seats =$seats + 1;
             $remaining = 10 - $seats;
+
+            if($remaining < 0)
+            {
+                $remaining = 0;
+            }
+
             $seat = array('avail'=>$remaining);
 
             $this->db->set($seat)
