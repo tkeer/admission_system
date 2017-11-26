@@ -458,7 +458,7 @@ class Admin extends MY_Controller {
             'time'         =>   $course->start_time,
             'days'         =>   $course->day
         );
-        $result = $this->course->insert_course($data);
+        $result = $this->course->insert_course($data, true);
 
         if($result == 1)
         {
