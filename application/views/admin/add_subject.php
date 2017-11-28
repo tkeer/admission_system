@@ -39,7 +39,7 @@
 			<div class="col-md-2 col-md-offset-3 "><label>Term:</label></div>
 			<div class="col-md-4">
 				<select name='term_id' class="form-control phone" required>
-					<option value="">Select Section</option>
+					<option value="">Select Term</option>
 					<?php foreach( $sec as $result ): ?>
 						<?php echo $id = $result->fall_add_id ?>
 						<?php echo $name = $result->name ?>
