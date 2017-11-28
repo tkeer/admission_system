@@ -164,6 +164,23 @@
 			</div>
 		</div>
 	</div><br>
+
+	<div class="row">
+		<div class="form-group">
+			<div class="col-md-2 col-md-offset-3 "><label>Section:</label></div>
+			<div class="col-md-4">
+				<select name='section' class="form-control phone" required>
+					<option value="">Select Section</option>
+					<?php foreach( $sections as $section ): ?>
+						<?php echo $id = $section->name ?>
+						<?php echo $name = $section->name ?>
+						<option value="<?= $id;?>"><?= $name;?></option>
+					<?php endforeach;?>
+				</select>
+			</div>
+		</div>
+	</div><br>
+
 	<div class="row">
 		<div class="form-group">
 			<div class="col-md-2 col-md-offset-3 "><label>Description:</label></div>

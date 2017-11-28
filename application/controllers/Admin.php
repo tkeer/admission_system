@@ -301,8 +301,9 @@ class Admin extends MY_Controller {
         $sec = $this->pro->list_sess();
         $dep = $this->pro->list_dep();
         $teach = $this->pro->list_teach();
+        $sections = $this->pro->list_section();
         $room = $this->pro->list_room();
-        $this->load->view('admin/add_subject', ['department'=>$dep, 'sec'=>$sec, 'teach'=>$teach, 'room'=>$room]);
+        $this->load->view('admin/add_subject', ['department'=>$dep, 'sec'=>$sec, 'teach'=>$teach, 'room'=>$room, 'sections' => $sections]);
     }
     public function add_sub(){
         $course_id = $this->input->post_get('phonenumber');
@@ -317,6 +318,7 @@ class Admin extends MY_Controller {
         $e_t = $this->input->post_get('end');
         $cons_id = $this->input->post_get('ins_id');
         $comment = $this->input->post_get('comment');
+        $section = $this->input->post_get('section');
 
 
         $days = serialize($this->input->post('hobbies[]'));
@@ -334,7 +336,8 @@ class Admin extends MY_Controller {
             'instr_id'      =>  $cons_id,
             'des' 			=> $comment,
             'day'           => $days,
-            'avail'         => 10
+            'avail'         => 10,
+            'section'       => $section
         );
 
         $result = $this->pro->add_sub($data);
@@ -371,10 +374,12 @@ class Admin extends MY_Controller {
         $teach = $this->pro->list_teach();
         $room = $this->pro->list_room();
         $result = $this->pro->edit_sub($id);
+
+        $sections = $this->pro->list_section();
         $days = $result->day;
         if($result){
             $this->load->view('admin/edit_sub', ['department'=>$dep,
-                'day'=>$days, 'sec'=>$sec, 'teach'=>$teach, 'room'=>$room, 'result'=>$result]);
+                'day'=>$days, 'sec'=>$sec, 'teach'=>$teach, 'room'=>$room, 'result'=>$result, 'sections' => $sections]);
         }else{
             return redirect('admin/List_room');
         }
@@ -394,6 +399,7 @@ class Admin extends MY_Controller {
         $e_t = $this->input->post_get('end');
         $cons_id = $this->input->post_get('ins_id');
         $comment = $this->input->post_get('comment');
+        $section = $this->input->post_get('section');
         $days = serialize($this->input->post('hobbies[]'));
         // days received
         $data = array(
@@ -409,7 +415,8 @@ class Admin extends MY_Controller {
             'end_time'         =>  $e_t,
             'instr_id'         =>  $cons_id,
             'des' 			   => $comment,
-            'day'           => $days
+            'day'           => $days,
+            'section'       => $section
         );
         $result = $this->pro->update_sub($data,$id);
         if($result){
@@ -521,6 +528,38 @@ class Admin extends MY_Controller {
         $students = $this->student->get_all();
 
         return $this->load->view('admin/list_students', ['students' => $students]);
+    }
+
+    public function add_section()
+    {
+        return $this->load->view('admin/add_section');
+    }
+
+    public function add_section_post()
+    {
+
+        $name    =  $this->input->post('name');
+
+        $data = array(
+            'name' => $name,
+        );
+
+        $result =   $this->course->add_section($data);
+
+        if($result){
+            $this->session->set_flashdata('add_session', 'Section added Seccussfully');
+        }else{
+            $this->session->set_flashdata('faild_session', 'Section adding Faild,Please Try Again');
+        }
+
+        return redirect('admin/add_section');
+    }
+
+    public function list_sections()
+    {
+        $sections = $this->course->list_sections();
+
+        return $this->load->view('admin/list_sections', ['sections' => $sections]);
     }
 
     public function ad_open($i){

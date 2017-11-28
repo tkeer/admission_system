@@ -7,6 +7,7 @@
         <tr>
             <th>Student ID.</th>
             <th>Course ID.</th>
+            <th>Section</th>
             <th>Description</th>
             <th>Action</th>
         </tr>
@@ -16,6 +17,7 @@
             <?php foreach($data as $data):?>
             <td><?php echo $data->roll_number?></td>
             <td><?php echo $data->courses_id?></td>
+            <td><?php echo $data->section?></td>
             <td><?php echo $data->description?></td>
 
             <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal">Accept</button>
@@ -95,6 +97,7 @@
         <tr>
             <th>Student ID.</th>
             <th>Course ID.</th>
+            <th>Section</th>
             <th>Description</th>
             <th>Status</th>
         </tr>
@@ -107,6 +110,7 @@
 
                 <td><?php echo $processed_request->roll_number?></td>
                 <td><?php echo $processed_request->courses_id?></td>
+                <td><?php echo $processed_request->section?></td>
                 <td><?php echo $processed_request->description?></td>
                 <td><?php echo ($processed_request->admin_id == -1 ? 'Rejected by you!' : 'Accepted by you!')?></td>
 

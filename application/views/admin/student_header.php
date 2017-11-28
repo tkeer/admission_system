@@ -167,6 +167,20 @@
 			</li>
 
 			<li>
+				<a href="javascript:;" data-toggle="collapse" data-target="#demo6"><i class="fa fa-fw fa-arrows-v"></i> Sections <i class="fa fa-fw fa-caret-down"></i></a>
+				<ul id="demo6" class="collapse">
+					<li>
+						<a class="tablinks fa  fa-file" href="<?= base_url('admin/add_section');?>"> Add New Section</a>
+					</li>
+					<li>
+						<a class="tablinks fa  fa-file" href="<?= base_url('admin/list_sections');?>"> List Sections</a>
+					</li>
+				</ul>
+
+
+			</li>
+
+			<li>
 				<a href="<?= base_url().'admin/pass';?>"><i class="fa fa-fw fa-edit"></i> Change Password</a>
 			</li>
 			<li>

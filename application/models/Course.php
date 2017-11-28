@@ -175,6 +175,22 @@ class Course extends CI_Model {
         return $query->row();
 
     }
+
+    public function add_section($data)
+    {
+        $this->db
+            ->insert('sections', $data);
+
+        return true;
+    }
+
+    public function list_sections()
+    {
+        $query =	$this->db->select()
+            ->from('sections')
+            ->get();
+        return $query->result();
+    }
 }
 
 

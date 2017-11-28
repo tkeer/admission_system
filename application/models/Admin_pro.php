@@ -243,4 +243,13 @@ class Admin_pro extends CI_Model {
         return $qry;
     }
 
+    public function list_section()
+    {
+        $query =	$this->db->select()
+            ->from('sections')
+            ->get();
+        return $query->result();
+
+    }
+
 }
