@@ -26,4 +26,11 @@ class Student extends CI_Model {
         return $q->result();
     }
 
+    public function hold($st_id, $is_holded)
+    {
+        $this->db->set('is_holded', $is_holded)
+            ->where('st_id', $st_id)
+            ->update('student_registeration');  //r
+    }
+
 }

@@ -491,6 +491,13 @@ class Admin extends MY_Controller {
     {
         return $this->load->view('admin/add_student');
     }
+    public function hold_student()
+    {
+        $st_id = $this->input->post('st_id');
+        $is_holded = $this->input->post('is_holded');
+
+        $this->student->hold($st_id, $is_holded == 'true' ? 1 : 0);
+    }
 
     public function add_student_post()
     {

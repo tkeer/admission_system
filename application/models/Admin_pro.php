@@ -184,6 +184,15 @@ class Admin_pro extends CI_Model {
         return $qry->row();
     }
 
+    public function is_holded($st_id)
+    {
+        $qry = $this->db->select('is_holded')
+            ->where('st_id', $st_id)
+            ->get('student_registeration');
+        return $qry->row();
+
+    }
+
     public function check_response($id){
         $qry = $this->db
             ->select('status')
