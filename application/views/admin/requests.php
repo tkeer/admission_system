@@ -32,6 +32,7 @@
                     <div class="modal-body">
                         <form action="<?php echo base_url('admin/resp_req/7');?>" method="POST" >
                             <fieldset>
+                                <input type="hidden" name="id" value="<?php echo $data->id;?>"  >
                                 <input type="hidden" name="st_id" value="<?php echo $data->st_id;?>"  >
                                 <input type="hidden" name="c_id" value="<?php echo $data->course_id;?>"  >
                                 <input type="hidden" name="des_data" value="<?php echo $data->description;?>"  >
@@ -62,6 +63,7 @@
                     <div class="modal-body">
                         <form action="<?php echo base_url('admin/resp_req/7');?>" method="POST" >
                             <fieldset>
+                                <input type="hidden" name="id" value="<?php echo $data->id;?>"  >
                                 <input type="hidden" name="st_id" value="<?php echo $data->st_id;?>"  >
                                 <input type="hidden" name="c_id" value="<?php echo $data->course_id;?>"  >
                                 <input type="hidden" name="des_data" value="<?php echo $data->description;?>"  >

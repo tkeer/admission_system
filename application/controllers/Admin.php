@@ -449,6 +449,7 @@ class Admin extends MY_Controller {
     public function resp_req($i){
         $st_id = $this->input->post('st_id');
         $c_id = $this->input->post('c_id');
+        $id = $this->input->post('id');
 
 
         $request_status = array(
@@ -482,7 +483,7 @@ class Admin extends MY_Controller {
             $this->session->set_flashdata('faild_session', 'Maximum enrolled course limit of the student already reached!');
         }
 
-        $result = $this->pro->req_status($request_status, $st_id,$c_id);
+        $result = $this->pro->req_status($request_status, $id);
         redirect('admin/req');
     }
 

@@ -202,7 +202,23 @@ class Admin_pro extends CI_Model {
 
     public function request($id){
         $qry = $this->db
-            ->select()
+            ->select(
+                [
+                    'course_request.id',
+                    'roll_number',
+                    'courses_id',
+                    'section',
+                    'description',
+                    'course_request.st_id',
+                    'course_request.course_id',
+                    'description',
+                    'roll_number',
+                    'courses_id',
+                    'section',
+                    'description',
+                    'admin_id',
+                ]
+            )
             ->join('course_list', 'course_list.course_id = course_request.course_id')
             ->join('student_registeration', 'student_registeration.st_id = course_request.st_id')
             ->where('admin_id',$id)
@@ -213,7 +229,22 @@ class Admin_pro extends CI_Model {
 
     public function teacher_request($id){
         $qry = $this->db
-            ->select()
+            ->select(
+                [
+                    'course_request.id',
+                    'roll_number',
+                    'courses_id',
+                    'section',
+                    'description',
+                    'course_request.st_id',
+                    'course_request.course_id',
+                    'description',
+                    'roll_number',
+                    'courses_id',
+                    'section',
+                    'description',
+                    'admin_id',
+                ])
             ->join('course_list', 'course_list.course_id = course_request.course_id')
             ->join('student_registeration', 'student_registeration.st_id = course_request.st_id')
             ->where('teacher_id', $id)
@@ -234,10 +265,10 @@ class Admin_pro extends CI_Model {
         return $qry->result();
     }
 
-    public function req_status($data, $st_id, $c_id){
+    public function req_status($data, $id){
 
         $qry = $this->db->set($data)
-            ->where(['st_id'=>$st_id,'course_id'=>$c_id])
+            ->where(['id'=>$id])
             ->update('course_request');
 
         return $qry;

@@ -31,9 +31,8 @@ class Dean extends MY_Controller {
 
     public function resp_req($i){
         $des = $this->input->post('des');
-        $st_id = $this->input->post('st_id');
-        $c_id = $this->input->post('c_id');
         $desrip = $this->input->post('des_data');
+        $id = $this->input->post('id');
 
 
         $data = array(
@@ -43,7 +42,7 @@ class Dean extends MY_Controller {
             'admin_id' => $i == 6 ? 1 : -3
         );
 
-        $result = $this->pro->req_status($data,$st_id,$c_id);
+        $result = $this->pro->req_status($data,$id);
 
         if($result){
             redirect('dean/req');

@@ -33,8 +33,7 @@
                     <div class="modal-body">
                         <form action="<?php echo base_url('dean/resp_req/'.'5');?>" method="POST" >
                             <fieldset>
-                                <input type="hidden" name="st_id" value="<?php echo $data->st_id;?>"  >
-                                <input type="hidden" name="c_id" value="<?php echo $data->course_id;?>"  >
+                                <input type="hidden" name="id" value="<?php echo $data->id;?>"  >
                                 <input type="hidden" name="des_data" value="<?php echo $data->description;?>"  >
 
                                 <button type="submit" class="btn btn-primary">Reject</button>
@@ -62,8 +61,7 @@
                     <div class="modal-body">
                         <form action="<?php echo base_url('dean/resp_req/'.'6');?>" method="POST" >
                             <fieldset>
-                                <input type="hidden" name="st_id" value="<?php echo $data->st_id;?>"  >
-                                <input type="hidden" name="c_id" value="<?php echo $data->course_id;?>"  >
+                                <input type="hidden" name="id" value="<?php echo $data->id;?>"  >
                                 <input type="hidden" name="des_data" value="<?php echo $data->description;?>"  >
 
                                 <button type="submit" class="btn btn-primary">Accept</button>
