@@ -20,66 +20,29 @@
             <td><?php echo $data->section?></td>
             <td><?php echo $data->description?></td>
 
-            <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal">Accept</button>
-                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Reject</button></td>
+            <td style="display: flex">
+
+                <form class="accept teacher-form" style="margin: 1%" action="<?php echo base_url('teacher/resp_req/2');?>" method="POST" >
+                    <fieldset>
+                        <input type="hidden" name="id" value="<?php echo $data->id ?>"  >
+                        <input type="hidden" name="des_data" value="<?php echo $data->description;?>"  >
+                        <button type="submit" class="btn btn-primary">Accept</button>
+                    </fieldset>
+                </form>
+
+
+                <form class="reject teacher-form" style="margin: 1%" action="<?php echo base_url('teacher/resp_req/1');?>" method="POST" >
+                    <fieldset>
+                        <input type="hidden" name="id" value="<?php echo $data->id ?>"  >
+                        <input type="hidden" name="des_data" value="<?php echo $data->description;?>"  >
+                        <button type="submit" class="btn btn-danger">Reject</button>
+                    </fieldset>
+                </form>
+
+            </td>
         </tr>
 
 
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Reject</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form action="<?php echo base_url('teacher/resp_req/'.'1');?>" method="POST" >
-                            <fieldset>
-                                <input type="hidden" name="id" value="<?php echo $data->id;?>"  >
-                                <input type="hidden" name="des_data" value="<?php echo $data->description;?>"  >
-
-                                <button type="submit" class="btn btn-primary">Reject</button>
-                            </fieldset>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- Modal -->
-        <div class="modal fade" id="Modal" role="dialog">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Accept</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form action="<?php echo base_url('teacher/resp_req/'.'2');?>" method="POST" >
-                            <fieldset>
-                                <input type="hidden" name="id" value="<?php echo $data->id;?>"  >
-                                <input type="hidden" name="des_data" value="<?php echo $data->description;?>"  >
-
-                                <button type="submit" class="btn btn-primary">Accept</button>
-                            </fieldset>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
         <?php endforeach;?>
 
         </tbody>
@@ -118,5 +81,27 @@
 
         </tbody>
     </table>
+
+
+<script>
+    $(function () {
+
+        $(".accept").on('submit', function () {
+
+            return confirm('Are you sure to accept?');
+
+        });
+
+
+        $(".reject").on('submit', function () {
+
+            return confirm('Are you sure reject?');
+
+        });
+
+
+    })
+</script>
+
 
 <?php include 'student_footer.php'; ?>

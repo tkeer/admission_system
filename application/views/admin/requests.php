@@ -15,72 +15,38 @@
             <td><?php echo $data->courses_id?></td>
             <td><?php echo $data->description?></td>
 
-            <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal">Enroll</button>
+
+            <td style="display: flex">
+
+                <form class="accept teacher-form" style="margin: 1%" action="<?php echo base_url('admin/resp_req/7');?>" method="POST" >
+                    <fieldset>
+                        <input type="hidden" name="id" value="<?php echo $data->id ?>"  >
+                        <input type="hidden" name="des_data" value="<?php echo $data->description;?>"  >
+                        <input type="hidden" name="st_id" value="<?php echo $data->st_id;?>"  >
+                        <input type="hidden" name="c_id" value="<?php echo $data->course_id;?>"  >
+                        <button type="submit" class="btn btn-primary">Enroll</button>
+                    </fieldset>
+                </form>
+
+            </td>
+
         </tr>
 
-
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Reject</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form action="<?php echo base_url('admin/resp_req/7');?>" method="POST" >
-                            <fieldset>
-                                <input type="hidden" name="id" value="<?php echo $data->id;?>"  >
-                                <input type="hidden" name="st_id" value="<?php echo $data->st_id;?>"  >
-                                <input type="hidden" name="c_id" value="<?php echo $data->course_id;?>"  >
-                                <input type="hidden" name="des_data" value="<?php echo $data->description;?>"  >
-
-
-                                <button type="submit" class="btn btn-primary">Add to course</button>
-                            </fieldset>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- Modal -->
-        <div class="modal fade" id="Modal" role="dialog">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Accept</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form action="<?php echo base_url('admin/resp_req/7');?>" method="POST" >
-                            <fieldset>
-                                <input type="hidden" name="id" value="<?php echo $data->id;?>"  >
-                                <input type="hidden" name="st_id" value="<?php echo $data->st_id;?>"  >
-                                <input type="hidden" name="c_id" value="<?php echo $data->course_id;?>"  >
-                                <input type="hidden" name="des_data" value="<?php echo $data->description;?>"  >
-
-
-                                <button type="submit" class="btn btn-primary">Add to course</button>
-                            </fieldset>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
         <?php endforeach;?>
         </tbody>
     </table>
+
+    <script>
+        $(function () {
+
+            $(".accept").on('submit', function () {
+
+                return confirm('Are you sure to enroll?');
+
+            });
+
+        })
+    </script>
+
+
 <?php include 'student_footer.php'; ?>
