@@ -72,11 +72,12 @@ class Student extends MY_Controller {
         $id = $this->session->userdata('id');
 
         $result = $this->course->dep_list();
+        $terms = $this->pro->list_sess();
         $status = $this->pro->check_status();
         $is_holded = $this->pro->is_holded($id);
         $is_holded = $is_holded->is_holded;
         $status =  $status->status;
-        $this->load->view('students/home', ['result' => $result,'status'=>$status, 'is_holded' => $is_holded]);
+        $this->load->view('students/home', ['terms' => $terms,'departments' => $result,'status'=>$status, 'is_holded' => $is_holded]);
     }
 
     public function add_course($course_id){
@@ -299,11 +300,12 @@ class Student extends MY_Controller {
     }
     public function get_province(){
         $country_id = $this->input->post('country_id');
+        $term_id = $this->input->post('term_id');
 
 
         $this->load->model('course','dep_model');
 
-        $provinces = $this->dep_model->list_files($country_id);
+        $provinces = $this->dep_model->list_files($country_id, $term_id);
         $result ='';
         $result .='<table class="table">'
             . '<tr>'

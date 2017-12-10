@@ -28,9 +28,21 @@ else if($status == '1'){ ?>
     <div class='row'>
         <div class="col-lg-3 col-lg-offset-1">
             <div class="form-group">
-                <select class="form-control" name="country" id="count" >
+                <select class="form-control count" name="country" id="terms">
+                    <option value="">Select Term</option>
+                    <?php foreach( $terms as $result ): ?>
+                        <?php echo $id = $result->fall_add_id ?>
+                        <?php  echo $name = $result->name ?>
+                        <option value="<?= $id;?>"  ><?= $name;?></option>
+                    <?php endforeach;?>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-3 col-lg-offset-1">
+            <div class="form-group">
+                <select class="form-control count" name="country" id="departments">
                     <option value="">Select Department</option>
-                    <?php foreach( $result as $result ): ?>
+                    <?php foreach( $departments as $result ): ?>
                         <?php echo $id = $result->dep_id ?>
                         <?php  echo $name = $result->dp_name ?>
                         <option value="<?= $id;?>"  ><?= $name;?></option>
@@ -67,9 +79,10 @@ else{
 
 <script type="text/javascript">
     $(document).ready(function(){
-        $('#count').on('change', function(){
-            var country_id = $(this).val();
-            if(country_id == '')
+        $('.count').on('change', function(){
+            var country_id = $("#departments").val();
+            var term_id = $("#terms").val();
+            if(country_id == '' || term_id == '')
             {
                 $('#result').prop('disabled', true);
             }
@@ -80,7 +93,7 @@ else{
                     url:"<?php echo base_url('student/get_province');?>",
                     type: "POST",
 
-                    data: {'country_id' : country_id},
+                    data: {'country_id' : country_id, 'term_id' : term_id},
                     dataType: 'json',
                     success: function(data){
                         $("#result").html(data);

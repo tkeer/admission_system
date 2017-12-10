@@ -558,7 +558,6 @@ class Admin extends MY_Controller {
 
     public function add_student_post()
     {
-
         $no    =  $this->input->post('no');
         $fname =  $this->input->post('fname');
         $lname =  $this->input->post('lname');

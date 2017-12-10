@@ -116,11 +116,12 @@ class Course extends CI_Model {
             return false;
         }
     }
-    public function list_files($id){
+    public function list_files($id, $term_id){
 
         $query =	$this->db->select()
             ->from('course_list')
             ->where('course_list.dep_id', $id)
+            ->where('fall_add.fall_add_id', $term_id)
             ->join('depart', 'depart.dep_id = course_list.dep_id', 'left')
             ->join('fall_add', 'fall_add.fall_add_id = course_list.fall_add_id', 'left')
             ->join('room', 'room.id = course_list.id', 'left')
