@@ -30,18 +30,23 @@ class Student extends MY_Controller {
     public function index(){
 
         $id = $this->session->userdata('id');
+
+        $is_holded = $this->pro->is_holded($id);
+        $is_holded = $is_holded->is_holded;
+
+
         $response = $this->pro->check_response($id);
 
         if(! $response)
         {
-            $this->load->view('students/dashboard');
+            $this->load->view('students/dashboard', ['is_holded' => $is_holded]);
             return;
         }
 
         $resp = $response->status;
 
         if($resp==0){
-            $this->load->view('students/dashboard');
+            $this->load->view('students/dashboard', ['is_holded' => $is_holded]);
         }
 
         if($resp==1){
@@ -64,7 +69,7 @@ class Student extends MY_Controller {
             $this->session->set_flashdata('std_course_request', 'Request Course Error! Maximum enrolled course limit already reached!');
         }
 
-        return $this->load->view('students/dashboard');
+        return $this->load->view('students/dashboard', ['is_holded' => $is_holded]);
 
     }
     public function dashboad(){
