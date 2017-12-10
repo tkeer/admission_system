@@ -85,24 +85,12 @@ class Student extends MY_Controller {
         //get student selected course to add
         $course_to_add = $this->course->check_date($course_id);
 
-//        echo '<pre>';
-//        print_r($course_to_add);
-//        die;
-
-        $strt_time = $course_to_add->start_time;
         // this code is for time check...  you can remove this if you want to check other conditions like five course
         // and already selected or not...etc
         $selected_course_results = $this->course->course_list($st_id); //already selected course in list of student...
 
 
-//        echo '<pre>';
-//        print_r($selected_course_results);
-//        die;
-
-
         if($selected_course_results){
-
-
 
             $day  =  unserialize($course_to_add->day);
 
@@ -131,19 +119,6 @@ class Student extends MY_Controller {
                                 return redirect('student/dashboad');
 
                             }
-
-//
-//                            $created = $selected_course_result->time.'<br>';
-//                            list($firstMinutes, $firstSeconds) = explode(':', $created);
-//                            $firstSeconds += ($firstMinutes * 60);
-//
-//                            list($secondMinutes, $secondSeconds) = explode(':', $strt_time);
-//                            $secondSeconds += ($secondMinutes * 60);
-//                            $diff = $secondSeconds - $firstSeconds;
-//                            if($diff == 0){
-//                                $this->session->set_flashdata('item', 'Please Select another Course Time Clash Error');
-//                                return redirect('student/dashboad');
-//                            }
 
                         }
                     }

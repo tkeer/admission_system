@@ -446,11 +446,68 @@ class Admin extends MY_Controller {
         $this->load->view('admin/requests',['data'=>$requests]);
     }
 
+
+    private function check_course_clash()
+    {
+        $c_id = $this->input->post('c_id');
+        $st_id = $this->input->post('st_id');
+        $course_to_add = $this->course->check_date($c_id);
+
+        $selected_course_results = $this->course->course_list($st_id); //already selected course in list of student...
+
+        if(! $selected_course_results)
+        {
+            return true;
+        }
+
+        $day  =  unserialize($course_to_add->day);
+
+        foreach($selected_course_results as $selected_course_result):
+            $days = unserialize($selected_course_result->days);
+
+            //get days with more quantity to loop through
+            if(sizeof($day) < sizeof($days)){
+                $select_day = $day;
+                $select_days = $days;
+
+            }else{
+                $select_day = $days;
+                $select_days = $day;
+            }
+
+
+            for($i=0;$i < sizeof($select_day); $i++){
+
+                for($j=0;$j<sizeof($select_days);$j++){
+
+                    if($select_day[$i] == $select_days[$j]){
+
+                        if(($selected_course_result->start_time < $course_to_add->end_time)
+                            && ($course_to_add->start_time < $selected_course_result->end_time))
+                        {
+
+                            $this->session->set_flashdata('faild_session', 'Unable to add the Course, Time Clash Error with ' . $selected_course_result->course_name);
+                            redirect('admin/req');
+
+                        }
+
+                    }
+                }
+
+            }
+        endforeach;
+
+        return true;
+
+    }
+
     public function resp_req($i){
+
+        $this->check_course_clash();
+
         $st_id = $this->input->post('st_id');
         $c_id = $this->input->post('c_id');
         $id = $this->input->post('id');
-
 
         $request_status = array(
             'status'     => $i,
