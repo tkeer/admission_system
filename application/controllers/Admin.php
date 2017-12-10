@@ -486,9 +486,10 @@ class Admin extends MY_Controller {
                             && ($course_to_add->start_time < $selected_course_result->end_time))
                         {
 
-                            $this->session->set_flashdata('faild_session', 'Unable to add the Course, Time Clash Error with ' . $selected_course_result->course_name);
-                            redirect('admin/req');
+                            $this->session->set_flashdata('faild_session', 'Unable to add the Course, Time Clash Error with ' . $selected_course_result->course_name
+                                . ". Please drop that course first.");
 
+                            redirect('admin/req');
                         }
 
                     }
