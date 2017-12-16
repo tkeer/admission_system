@@ -63,6 +63,9 @@
                         <a href="<?= base_url('Dean/req');?>"><i class="fa fa-fw fa-dashboard"></i> Requests</a>
                     </li>
                     <li>
+                        <a href="<?php echo base_url('dean/edit_pass');?>"><i class="fa fa-fw fa-edit"></i> Profile</a>
+                    </li>
+                    <li>
                         <a href="<?php echo base_url('Dean/logout');?>" class="fa fa-power-off"?> Logout</a>
                     </li>
                 </ul>                  

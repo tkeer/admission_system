@@ -53,6 +53,26 @@ class Dean extends MY_Controller {
         }
     }
 
+    public function edit_pass(){
+        $this->load->view('director/pass');
+    }
+
+    public function update_pass(){
+        $id = $this->session->userdata('dean_id');
+        $pass = $this->input->post_get('password');
+        $data = array(
+            'pass' => $pass
+        );
+        $result = $this->login->update_pass($data, $id);
+
+        if($result){
+            $this->session->set_flashdata('item', 'You have successfully updated password');
+            return redirect('dean');
+        }else{
+            $this->session->set_flashdata('item', 'Query faild, please try Again !');
+            return redirect('dean');
+        }
+    }
 
 	
 	public function logout(){

@@ -8,6 +8,11 @@ class Teacher extends MY_Controller {
      */
     public $pro;
 
+    /**
+     * @var Admin_login
+     */
+    public $login;
+
     public function __construct(){
         parent::__construct();
         if( ! $this->session->userdata('teacher_id'))
@@ -55,6 +60,27 @@ class Teacher extends MY_Controller {
         }else{
 
             redirect('teacher/req');
+        }
+    }
+
+    public function edit_pass(){
+        $this->load->view('teacher/pass');
+    }
+
+    public function update_pass(){
+        $id = $this->session->userdata('teacher_id');
+        $pass = $this->input->post_get('password');
+        $data = array(
+            'pass' => $pass
+        );
+        $result = $this->login->update_pass_teacher($data,$id);
+
+        if($result){
+            $this->session->set_flashdata('item', 'You have successfully updated password');
+            return redirect('teacher');
+        }else{
+            $this->session->set_flashdata('item', 'Query faild, please try Again !');
+            return redirect('teacher');
         }
     }
 

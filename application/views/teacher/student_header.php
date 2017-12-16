@@ -63,6 +63,10 @@
                         <a href="<?= base_url('teacher/req');?>"><i class="fa fa-fw fa-dashboard"></i> Requsts</a>
                     </li>
                     <li>
+                        <a href="<?php echo base_url('teacher/edit_pass');?>"><i class="fa fa-fw fa-edit"></i> Profile</a>
+                    </li>
+
+                    <li>
                         <a href="<?php echo base_url('Teacher/logout');?>" class="fa fa-power-off"?> Logout</a>
                     </li>
                 </ul>                  

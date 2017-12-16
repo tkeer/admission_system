@@ -8,7 +8,12 @@ class Hod extends MY_Controller {
      */
     public $pro;
 
-	public function __construct(){
+    /**
+     * @var Admin_login
+     */
+    public $login;
+
+    public function __construct(){
 		parent::__construct();
 		if( ! $this->session->userdata('hod_id'))
 			return redirect('login');
@@ -50,6 +55,26 @@ class Hod extends MY_Controller {
         }
     }
 
+    public function edit_pass(){
+        $this->load->view('hod/pass');
+    }
+
+    public function update_pass(){
+        $id = $this->session->userdata('hod_id');
+        $pass = $this->input->post_get('password');
+        $data = array(
+            'pass' => $pass
+        );
+        $result = $this->login->update_pass($data,$id);
+
+        if($result){
+            $this->session->set_flashdata('item', 'You have successfully updated password');
+            return redirect('hod');
+        }else{
+            $this->session->set_flashdata('item', 'Query faild, please try Again !');
+            return redirect('hod');
+        }
+    }
 
     public function logout(){
 		$this->session->unset_userdata('hod_id');

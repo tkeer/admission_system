@@ -54,10 +54,18 @@ class Admin_login extends CI_Model {
             ->update('admin');
         return $query;
     }
+
     public function update_pass_st($data,$id){
         $query = $this->db->set($data)
             ->where('st_id', $id)
             ->update('student_registeration');
+        return $query;
+    }
+
+    public function update_pass_teacher($data, $id){
+        $query = $this->db->set($data)
+            ->where('instr_id', $id)
+            ->update('teacher');
         return $query;
     }
 
